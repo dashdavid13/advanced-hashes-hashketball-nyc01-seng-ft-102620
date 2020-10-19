@@ -178,13 +178,14 @@ end
 
 
 
-def player_stats (player_input)
-  game_hash.each do |team, team_info|
-      team_info.map do |data, info|
-        if info.include?(player_input)
-          return game_hash[team][team_info][player_input]
-      end 
-    end 
-  end 
-end 
 
+
+def player_stats(player_n)
+  game_hash.each do |home_away, keys|
+    keys[:players].each do |player|
+      if player[:player_name] == player_n
+        return player.delete_if { |stat, value| [:player_name].include?(stat)}
+      end
+    end
+  end
+end

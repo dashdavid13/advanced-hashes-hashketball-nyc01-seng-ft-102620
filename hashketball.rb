@@ -180,11 +180,13 @@ end
 
 
 
-def player_stats(player_n)
-  game_hash.each do |home_away, keys|
-    keys[:players].each do |player|
-      if player[:player_name] == player_n
-        return player.each { |stat, value| [:player_name].include?(stat)}
+def player_stats(player_input)
+  game_hash.each do |team, team_info|
+    team_info[:players].each do |data|
+      if data[:player_name] == player_input
+        return data.each do |stat, value| 
+          [:player_name].include?(stat) 
+        end 
       end
     end
   end
